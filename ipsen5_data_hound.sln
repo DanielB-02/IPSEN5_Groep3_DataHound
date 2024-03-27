@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipsen5-data-hound", "ipsen5-data-hound\ipsen5-data-hound.csproj", "{C1401C48-0B5E-4FBB-B215-CF86486710E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipsen5_data_hound", "ipsen5_data_hound\ipsen5_data_hound.csproj", "{C1401C48-0B5E-4FBB-B215-CF86486710E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
