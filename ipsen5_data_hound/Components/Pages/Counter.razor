@@ -1,19 +1,24 @@
 ﻿@page "/counter"
+@inject ipsen5_data_hound.Services.CounterService CounterService
+@inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
 
-<p role="status">Current count: @currentCount</p>
+<p role="status">Current count: @CounterService.CurrentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="CounterService.IncrementCount">1</button>
+<p></p>
+<p><button class="btn btn-primary" @onclick="CounterService.IncrementCount5">5</button></p>
+<p></p>
+<p><button class="btn btn-primary" @onclick="CounterService.IncrementCount10">10</button></p>
 
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
+@code
+{
+    void NavigateToLogin()
     {
-        currentCount++;
+        NavigationManager.NavigateTo("/login");
     }
 }

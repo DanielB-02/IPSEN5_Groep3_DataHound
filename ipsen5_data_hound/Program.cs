@@ -1,10 +1,13 @@
 using ipsen5_data_hound.Components;
+using ipsen5_data_hound.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddSingleton<CounterService>();
 
 var app = builder.Build();
 
