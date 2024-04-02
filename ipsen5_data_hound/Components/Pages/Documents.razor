@@ -14,18 +14,21 @@
         <td>
             <NavLink href="case_one">Case One</NavLink>
             <img class="done2-image" src="@($"images/{determineStatus(1)}_circle.jpg")" alt="Status image">
+              <span>@determineStatusText(1)</span>
         </td>
     </tr>
     <tr>
         <td>
             <NavLink href="case_two">Case Two</NavLink>
             <img class="done2-image" src="@($"images/{determineStatus(3)}_circle.jpg")" alt="Status image">
+              <span>@determineStatusText(3)</span>
         </td>
     </tr>
     <tr>
         <td>
             <NavLink href="case_three">Case Three</NavLink>
             <img class="done2-image" src="@($"images/{determineStatus(5)}_circle.jpg")" alt="Status image">
+            <span>@determineStatusText(5)</span>
         </td>
     </tr>
     </tbody>
@@ -46,5 +49,21 @@
 
         return "green";
 
+    }
+    
+    public string determineStatusText(int listNumber)
+    {
+        string color = determineStatus(listNumber);
+        switch (color)
+        {
+            case "red":
+                return "Not Started";
+            case "orange":
+                return "In Progress";
+            case "green":
+                return "Finished";
+            default:
+                throw new ArgumentException("Invalid color");
+        }
     }
 }
