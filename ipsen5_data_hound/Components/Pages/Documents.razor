@@ -1,0 +1,50 @@
+@page "/documents"
+@inject ipsen5_data_hound.Services.ValuesService ValuesService
+
+<h3>Documents</h3>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Case</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <NavLink href="case_one">Case One</NavLink>
+            <img class="done2-image" src="@($"images/{determineStatus(1)}_circle.jpg")" alt="Status image">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <NavLink href="case_two">Case Two</NavLink>
+            <img class="done2-image" src="@($"images/{determineStatus(3)}_circle.jpg")" alt="Status image">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <NavLink href="case_three">Case Three</NavLink>
+            <img class="done2-image" src="@($"images/{determineStatus(5)}_circle.jpg")" alt="Status image">
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+@code
+{
+    private string determineStatus(int number){
+        if (ValuesService.DetermineColor(number) == "red" && ValuesService.DetermineColor(number + 1) == "red"){
+            return "red";
+        }
+        if (ValuesService.DetermineColor(number) == "red" ||
+            ValuesService.DetermineColor(number + 1) == "red" ||
+            ValuesService.DetermineColor(number) == "orange" ||
+            ValuesService.DetermineColor(number + 1 ) == "orange"){
+            return "orange";
+        }
+
+        return "green";
+
+    }
+}

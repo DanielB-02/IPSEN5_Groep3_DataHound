@@ -1,0 +1,97 @@
+@page "/Case_Two"
+@rendermode InteractiveServer
+@inject ipsen5_data_hound.Services.ValuesService ValuesService
+@inject NavigationManager NavigationManager
+
+
+<h3>Case Two</h3>
+<div class="toggle-documents1">
+    <button class="btn btn-toggle" @onclick="ToggleTableVisibility1">Minimize</button>
+    @if (showTable1)
+    {
+        @for (int i = 0; i < ValuesService.leftValues3.Count; i++)
+        {
+            var index = i;
+            <div class="row">
+                <div class="col flex-container">
+                    <button class="btn btn-primary button-small" @onclick="() => ToggleLeftValue3(index)">Submit</button>
+                    <p class="text-bordering-button">@ValuesService.leftValues3[index]</p>
+                </div>
+                <div class="col">
+                    <img class="image-inline-with-text" src="@(ValuesService.leftValues3[index] ^ ValuesService.rightValues3[index] ? "images/orange_circle.jpg" : (ValuesService.leftValues3[index] && ValuesService.rightValues3[index] ? "images/green_circle.jpg" : "images/red_circle.jpg"))" alt="Result image">
+                </div>
+                <div class="col flex-container2">
+                    <p class="text-bordering-button">@ValuesService.rightValues3[index]</p>
+                    <button class="btn btn-primary button-small" @onclick="() => ToggleRightValue3(index)">Submit</button>
+                </div>
+            </div>
+        }
+    }
+</div>
+    <img class="done-image" src="@($"images/{ValuesService.DetermineColor(3)}_circle.jpg")" alt="Status image">
+    <div class="toggle-documents2">
+        <button class="btn btn-toggle" @onclick="ToggleTableVisibility2">Minimize</button>
+        @if (showTable2)
+        {
+            @for (int i = 0; i < ValuesService.leftValues4.Count; i++)
+            {
+                var index = i;
+                <div class="row">
+                    <div class="col flex-container">
+                        <button class="btn btn-primary button-small" @onclick="() => ToggleLeftValue4(index)">Submit</button>
+                        <p class="text-bordering-button">@ValuesService.leftValues4[index]</p>
+                    </div>
+                    <div class="col">
+                        <img class="image-inline-with-text" src="@(ValuesService.leftValues4[index] ^ ValuesService.rightValues4[index] ? "images/orange_circle.jpg" : (ValuesService.leftValues4[index] && ValuesService.rightValues4[index] ? "images/green_circle.jpg" : "images/red_circle.jpg"))" alt="Result image">                </div>
+                    <div class="col flex-container2">
+                        <p class="text-bordering-button">@ValuesService.rightValues4[index]</p>
+                        <button class="btn btn-primary button-small" @onclick="() => ToggleRightValue4(index)">Submit</button>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+   <img class="done-image" src="@($"images/{ValuesService.DetermineColor(4)}_circle.jpg")" alt="Status image">
+
+   <div>
+       <button class="btn btn-primary" @onclick="NavigateToCases">Back to cases</button>
+   </div>
+   @code {
+    private bool showTable1 = true;
+    private bool showTable2 = true;
+
+    private void ToggleLeftValue3(int index)
+    {
+        ValuesService.ToggleLeftValue(index, 3);
+    }
+
+    private void ToggleRightValue3(int index)
+    {
+        ValuesService.ToggleRightValue(index, 3);
+    }
+
+    private void ToggleTableVisibility1()
+    {
+        showTable1 = !showTable1;
+    }
+
+    private void ToggleLeftValue4(int index)
+    {
+        ValuesService.ToggleLeftValue(index, 4);
+    }
+
+    private void ToggleRightValue4(int index)
+    {
+        ValuesService.ToggleRightValue(index, 4);
+    }
+
+    private void ToggleTableVisibility2()
+    {
+        showTable2 = !showTable2;
+    }
+    
+    void NavigateToCases()
+    {
+        NavigationManager.NavigateTo("/documents");
+    }
+}

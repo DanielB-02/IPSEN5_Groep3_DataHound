@@ -8,6 +8,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddSingleton<CounterService>();
+builder.Services.AddSingleton<ValuesService>();
 
 var app = builder.Build();
 

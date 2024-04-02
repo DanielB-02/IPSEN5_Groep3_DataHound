@@ -8,4 +8,10 @@
         <AssemblyName>$(AssemblyName.Replace(' ', '_'))</AssemblyName>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Update="Components\Pages\Case_One.Razor.css">
+        <DependentUpon>Case_One.razor</DependentUpon>
+      </None>
+    </ItemGroup>
+
 </Project>
