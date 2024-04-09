@@ -38,21 +38,34 @@
     <textarea @bind="InputText" class="form-control custom-textbox" placeholder="Enter text here..."></textarea>
     <button class="btn btn-primary" @onclick="SaveText">Save Text</button>
 </div>
+<div class="output-group">
+    <button class="btn btn-primary" @onclick="ShowText">Show Text</button>
+    <p>@SavedText</p>
+</div>
 
 @code {
     private int _caseNumber;
     public string InputText { get; set; } = string.Empty;
-    
+    public string SavedText { get; set; } = string.Empty;
+
+    void ShowText()
+    {
+        if (ValuesService.textValues[_caseNumber].Count == 0) return;
+        for (int i = 0; i < ValuesService.textValues[_caseNumber].Count; i++)
+        {
+            SavedText += " " + ValuesService.textValues[_caseNumber][i];
+            Console.WriteLine(_caseNumber);
+        }
+    }
     void SaveText()
     {
         
         if (!string.IsNullOrEmpty(InputText))
             
         {
-            Console.WriteLine(InputText);
-            ValuesService.textValues[_caseNumber] = InputText;
+            Console.WriteLine(_caseNumber);
+            ValuesService.saveText(InputText, _caseNumber);
         }
-        Console.WriteLine("testsererererer");
     }
     [Parameter]
     public string CaseNumber1

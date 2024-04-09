@@ -5,7 +5,7 @@ namespace ipsen5_data_hound.Services
         public int totalCases { get; set; } = 0;
         public List<List<bool>> leftValues { get; set; }
         public List<List<bool>> rightValues { get; set; }
-        public List<String> textValues { get; set; }
+        public List<List<String>> textValues { get; set; }
 
         public List<bool> showTable { get; set; }
         public ValuesService()
@@ -14,17 +14,24 @@ namespace ipsen5_data_hound.Services
             leftValues = new List<List<bool>>();
             rightValues = new List<List<bool>>();
             showTable = new List<bool>();
+            textValues = new List<List<String>>();
             AddNewCase();
-            Console.WriteLine(leftValues+ "startup");
         }
         
+        
+        public void saveText(String text, int listNumber)
+        {
+            List<String> tempList = textValues[listNumber];
+            tempList.Add(text);
+            textValues.Insert(listNumber,tempList);
+        }
         
         public void AddNewCase()
         {
             leftValues.Add(new List<bool> { false, false, false });
             rightValues.Add(new List<bool> { false, false, false });
             showTable.Add(true);
-            Console.WriteLine(leftValues.Count + "adding new case");
+            textValues.Add(new List<String>());
             totalCases = leftValues.Count;
         }
         public void ToggleLeftValue(int index, int listNumber)

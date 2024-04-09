@@ -74,11 +74,7 @@
      }
     private void NavigateToCase(int caseNumber)
     {
-        for (int i = 0; i < ValuesService.leftValues[caseNumber].Count; i++)
-        {
-            Console.WriteLine(ValuesService.leftValues[caseNumber][i]);
-        }
-        Console.WriteLine(ValuesService.leftValues[caseNumber].ToString());
+
         NavigationManager.NavigateTo($"/case/{caseNumber}");
     }
 }
