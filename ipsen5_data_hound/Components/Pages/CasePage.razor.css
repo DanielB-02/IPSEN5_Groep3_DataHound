@@ -58,5 +58,19 @@
 .done-image{
     width: 2em;
     height: 2em;
-    margin-left: 205px;
+    margin-left: 205px;}
+.custom-textbox {
+    max-width: 200px; /* Adjust this value to change the maximum width of the text box */
+    width: 100%; /* This will make the text box take up as much space as it can, up to the maximum width */
+    height: 150px; /* Adjust this value to change the height of the text box */
+    margin-left: auto; /* This will push the text box to the right */
+    padding: 5px;
+    text-align: left; /* Aligns the text to the left side of the text box */
+    vertical-align: top;
+}
+.input-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    width: 100%; /* This will make the container take up the full width of its parent */
 }

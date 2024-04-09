@@ -5,6 +5,7 @@ namespace ipsen5_data_hound.Services
         public int totalCases { get; set; } = 0;
         public List<List<bool>> leftValues { get; set; }
         public List<List<bool>> rightValues { get; set; }
+        public List<String> textValues { get; set; }
 
         public List<bool> showTable { get; set; }
         public ValuesService()

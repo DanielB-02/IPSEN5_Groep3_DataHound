@@ -33,9 +33,27 @@
     <button class="btn btn-primary" @onclick="NavigateToCases">Back to cases</button>
 </div>
 
+
+<div class="input-group">
+    <textarea @bind="InputText" class="form-control custom-textbox" placeholder="Enter text here..."></textarea>
+    <button class="btn btn-primary" @onclick="SaveText">Save Text</button>
+</div>
+
 @code {
     private int _caseNumber;
-
+    public string InputText { get; set; } = string.Empty;
+    
+    void SaveText()
+    {
+        
+        if (!string.IsNullOrEmpty(InputText))
+            
+        {
+            Console.WriteLine(InputText);
+            ValuesService.textValues[_caseNumber] = InputText;
+        }
+        Console.WriteLine("testsererererer");
+    }
     [Parameter]
     public string CaseNumber1
     {
@@ -52,7 +70,7 @@
             }
         }
     }
-    [Parameter]
+    [Parameter] 
     public string Title { get; set; }
     
     
