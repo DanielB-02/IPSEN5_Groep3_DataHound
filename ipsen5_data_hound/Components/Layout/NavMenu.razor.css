@@ -89,6 +89,18 @@
     display: block;
 }
 
+/* logo */
+
+.logo {
+    width: 160px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.navbar {
+    background-color: #f7f7f7; /* Set background color to white */
+
+}
+
 @media (min-width: 641px) {
     .navbar-toggler {
         display: none;
