@@ -1,19 +1,15 @@
 ﻿@page "/counter"
 @inject ipsen5_data_hound.Services.CounterService CounterService
+@inject ipsen5_data_hound.Services.ValuesService ValuesService
 @inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
-
-<p role="status">Current count: @CounterService.CurrentCount</p>
-
-<button class="btn btn-primary" @onclick="CounterService.IncrementCount">1</button>
-<p></p>
-<p><button class="btn btn-primary" @onclick="CounterService.IncrementCount5">5</button></p>
-<p></p>
-<p><button class="btn btn-primary" @onclick="CounterService.IncrementCount10">10</button></p>
+<p>Total completed cases: @ValuesService.GetTotalCompletedCases()</p>
+<p>In action cases: @ValuesService.GetInActionCases()</p>
+<p>Non active cases: @ValuesService.GetNonActiveCases()</p>
 
 @code
 {

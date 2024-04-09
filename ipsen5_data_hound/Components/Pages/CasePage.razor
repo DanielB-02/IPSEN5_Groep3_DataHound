@@ -1,0 +1,76 @@
+@page "/case/{CaseNumber1}"
+@namespace ipsen5_data_hound.Components.Pages
+@inject ipsen5_data_hound.Services.ValuesService ValuesService
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<h3>@Title</h3>
+<div class="toggle-documents1">
+    <button class="btn btn-toggle" @onclick="() => ValuesService.ToggleTable(_caseNumber)">Minimize</button>
+    @if (ValuesService.showTable[_caseNumber])
+    {
+        @for (int i = 0; i < ValuesService.leftValues[_caseNumber].Count; i++)
+        {
+            var index = i;
+            <div class="row">
+                <div class="col flex-container">
+                    <button class="btn btn-primary button-small" @onclick="() => ValuesService.ToggleLeftValue(index, _caseNumber)">Submit</button>
+                    <p class="text-bordering-button">@ValuesService.leftValues[_caseNumber][index]</p>
+                </div>
+                <div class="col">
+                    <img class="image-inline-with-text" src="@(ValuesService.leftValues[_caseNumber][index] ^ ValuesService.rightValues[_caseNumber][index] ? "images/orange_circle.jpg" : (ValuesService.leftValues[_caseNumber][index] && ValuesService.rightValues[_caseNumber][index] ? "images/green_circle.jpg" : "images/red_circle.jpg"))" alt="Result image">
+                </div>
+                <div class="col flex-container2">
+                    <p class="text-bordering-button">@ValuesService.rightValues[_caseNumber][index]</p>
+                    <button class="btn btn-primary button-small" @onclick="() => ValuesService.ToggleRightValue(index, _caseNumber)">Submit</button>
+                </div>
+            </div>
+        }
+    }
+</div>
+<img class="done-image" src="@($"images/{ValuesService.DetermineColor(_caseNumber)}_circle.jpg")" alt="Status image">
+<div>
+    <button class="btn btn-primary" @onclick="NavigateToCases">Back to cases</button>
+</div>
+
+@code {
+    private int _caseNumber;
+
+    [Parameter]
+    public string CaseNumber1
+    {
+        get => _caseNumber.ToString();
+        set
+        {
+            if (int.TryParse(value, out var number))
+            {
+                _caseNumber = number;
+            }
+            else
+            {
+                NavigationManager.NavigateTo("/documents");
+            }
+        }
+    }
+    [Parameter]
+    public string Title { get; set; }
+    
+    
+
+    void NavigateToCases()
+    {
+        NavigationManager.NavigateTo("/documents");
+    }
+    protected override void OnParametersSet()
+    {
+        // Validate the case number
+        if (_caseNumber < 0 || _caseNumber >= ValuesService.totalCases)
+        {
+            NavigationManager.NavigateTo("/documents");
+            return;
+        }
+
+        // Update the title based on the case number
+        Title = $"Case {_caseNumber + 1}";
+    }
+}

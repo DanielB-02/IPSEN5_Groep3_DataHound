@@ -30,7 +30,7 @@
     color: white;
     text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    
+
 }
 
 .btn-primary:hover {
@@ -53,7 +53,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-left: -150px; /* Adjust this value to move the third column closer or further from the second column */
+    margin-left: 0; /* Adjust this value to move the third column closer or further from the second column */
 }
 .done-image{
     width: 2em;
