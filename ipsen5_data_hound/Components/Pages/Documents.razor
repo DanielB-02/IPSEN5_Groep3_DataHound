@@ -1,0 +1,80 @@
+@page "/documents"
+@inject ipsen5_data_hound.Services.ValuesService ValuesService
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<h3>Documents</h3>
+
+<button class="btn btn-primary" @onclick="AddNewCase">Add New Case</button>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Case</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (int i = 0; i < ValuesService.totalCases; i++)
+    {
+        var caseNumber = i;
+        <tr>
+            <td>
+                <a @onclick="() => NavigateToCase(caseNumber)">Case @(caseNumber)</a>
+                <img class="done2-image" src="@($"images/{determineStatus(caseNumber)}_circle.jpg")" alt="Status image">
+                <span>@determineStatusText(caseNumber)</span>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@code
+{
+    
+    private void AddNewCase()
+    {
+        ValuesService.AddNewCase();
+    }
+     private string determineStatus(int number){
+         if (number < ValuesService.leftValues.Count && number < ValuesService.rightValues.Count)
+         {
+             if (ValuesService.DetermineColor(number) == "red"){
+                 return "red";
+             }
+             if (ValuesService.DetermineColor(number) == "red" ||
+                 ValuesService.DetermineColor(number) == "orange"){
+                 return "orange";
+             }
+
+             return "green";
+         }
+
+         return "unknown";
+     }
+
+     public string determineStatusText(int listNumber)
+     {
+         if (listNumber < ValuesService.leftValues.Count)
+         {
+             string color = determineStatus(listNumber);
+             switch (color)
+             {
+                 case "red":
+                     return "Not Started";
+                 case "orange":
+                     return "In Progress";
+                 case "green":
+                     return "Finished";
+                 default:
+                     throw new ArgumentException("Invalid color");
+             }
+         }
+
+         return "unknown";
+     }
+    private void NavigateToCase(int caseNumber)
+    {
+
+        NavigationManager.NavigateTo($"/case/{caseNumber}");
+    }
+}

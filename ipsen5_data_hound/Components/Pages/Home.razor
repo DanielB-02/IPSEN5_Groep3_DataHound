@@ -1,7 +1,20 @@
 ﻿@page "/"
+@page "/home"
+@inject ipsen5_data_hound.Services.ValuesService ValuesService
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
+<button class="btn btn-primary">Add New Case</button>
 
 Welcome to your new app.
+
+@code
+{
+    private void AddNewCase()
+    {
+        ValuesService.AddNewCase();
+    }
+}

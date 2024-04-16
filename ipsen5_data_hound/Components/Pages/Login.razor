@@ -1,0 +1,17 @@
+@page "/login"
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+    <button class="btn btn-primary" @onclick="NavigateToHome">Go to Home</button>
+
+
+
+@code
+{
+    
+    private void NavigateToHome()
+    {
+        Console.WriteLine("Navigating to home");
+        NavigationManager.NavigateTo("/counter", true);
+    }
+}
