@@ -12,6 +12,9 @@ nav.nav-flex-column {
     background-size: cover;
 }
 
+.collapse{
+    display: none;
+}
 .navbar-toggler {
     appearance: none;
     cursor: pointer;

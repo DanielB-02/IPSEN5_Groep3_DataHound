@@ -4,7 +4,7 @@
 
     <nav class="nav-flex-column">
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+            <NavLink class="nav-link" href="home" Match="NavLinkMatch.All">
                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Dashboard
             </NavLink>
         </div>
@@ -18,11 +18,16 @@
                 <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Contracten
             </NavLink>
         </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="login">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Login
+            </NavLink>
+        </div>
     </nav>
 </div>
 
 @code {
-    bool collapseNavMenu = true;
+    bool collapseNavMenu = false;
     string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
     void ToggleNavMenu()

@@ -1,17 +1,41 @@
-@page "/login"
+
+
+@page "/"
+@inject ipsen5_data_hound.Services.LoginService LoginService
 @inject NavigationManager NavigationManager
-@rendermode InteractiveServer
 
-    <button class="btn btn-primary" @onclick="NavigateToHome">Go to Home</button>
+<EditForm Model="@LoginService" OnValidSubmit="HandleValidSubmit" FormName="LoginForm">
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <InputText id="username" class="form-control" @bind-Value="LoginService.username" @bind="username" style="width: 240px;" />
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <InputText id="password" type="password" class="form-control" @bind-Value="LoginService.password" @bind="password" style="width: 240px;"/>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</EditForm>
 
+@code {
+    public string username { get; set; } = string.Empty;
+    public string password { get; set; } = string.Empty;
 
-
-@code
-{
-    
-    private void NavigateToHome()
+    private void HandleValidSubmit()
     {
-        Console.WriteLine("Navigating to home");
-        NavigationManager.NavigateTo("/counter", true);
+        //LoginService.username = username;
+        //LoginService.password = password;
+        
+        Console.WriteLine($"Username: {username}");
+        Console.WriteLine($"Password: {password}");
+        if (LoginService.testName() && LoginService.testPass()) // replace with your hardcoded username and password
+        {
+            NavigationManager.NavigateTo("/home"); // navigate to the home page if login is successful
+        }
+        
+        else
+        {
+            // show an error message if login is unsuccessful
+        }
+        NavigationManager.NavigateTo("/home");
     }
 }
