@@ -22,14 +22,10 @@
 
     private void HandleValidSubmit()
     {
-        //LoginService.username = username;
-        //LoginService.password = password;
         
-        Console.WriteLine($"Username: {username}");
-        Console.WriteLine($"Password: {password}");
-        if (LoginService.testName() && LoginService.testPass()) // replace with your hardcoded username and password
+        if (LoginService.testName() && LoginService.testPass()) 
         {
-            NavigationManager.NavigateTo("/home"); // navigate to the home page if login is successful
+            NavigationManager.NavigateTo("/home");
         }
         
         else
