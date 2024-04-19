@@ -37,18 +37,25 @@
 
 <div class="input-group">
     <textarea @bind="InputText" class="form-control custom-textbox" placeholder="Enter text here..."></textarea>
-    <button class="btn btn-primary" @onclick="SaveText">Save Note</button>
-</div>
+    <button class="btn btn-primary btn-small" @onclick="SaveText">Save Note</button>
+</div> 
 <div class="output-group">
-    <button class="btn btn-primary" @onclick="ShowText">Show Notes</button>
     <p>@SavedText</p>
+    <button class="btn btn-primary" @onclick="ShowText">Show Notes</button>
+
 </div>
 
 @code {
     private int _caseNumber;
     public string InputText { get; set; } = string.Empty;
     public string SavedText { get; set; } = string.Empty;
-
+    
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        ShowText();
+    }
     void ShowText()
     {
         if( SavedText.Length > 0 )  SavedText = "";
@@ -57,6 +64,8 @@
         {
             SavedText += " " + ValuesService.textValues[_caseNumber][i];
         }   
+        
+        InputText = SavedText;
     }
     void SaveText()
     {
@@ -103,6 +112,6 @@
         }
 
         // Update the title based on the case number
-        Title = $"Case {_caseNumber + 1}";
+        Title = $"Case {_caseNumber}";
     }
 }

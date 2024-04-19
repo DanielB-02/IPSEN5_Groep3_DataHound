@@ -58,6 +58,9 @@ nav.nav-flex-column {
     /*background-color: rgba(255,255,255,0.37);*/
     color: #0baee5;
 }
+.far-right {
+    text-align: right;
+}
 
 
 
