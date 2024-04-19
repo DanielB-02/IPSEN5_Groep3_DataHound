@@ -12,6 +12,9 @@ nav.nav-flex-column {
     background-size: cover;
 }
 
+.collapse{
+    display: none;
+}
 .navbar-toggler {
     appearance: none;
     cursor: pointer;
@@ -54,6 +57,9 @@ nav.nav-flex-column {
 .nav-item ::deep a.active {
     /*background-color: rgba(255,255,255,0.37);*/
     color: #0baee5;
+}
+.far-right {
+    text-align: right;
 }
 
 

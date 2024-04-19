@@ -1,4 +1,5 @@
 @page "/case/{CaseNumber1}"
+@using Microsoft.AspNetCore.Authorization
 @namespace ipsen5_data_hound.Components.Pages
 @inject ipsen5_data_hound.Services.ValuesService ValuesService
 @inject NavigationManager NavigationManager
@@ -36,26 +37,35 @@
 
 <div class="input-group">
     <textarea @bind="InputText" class="form-control custom-textbox" placeholder="Enter text here..."></textarea>
-    <button class="btn btn-primary" @onclick="SaveText">Save Text</button>
-</div>
+    <button class="btn btn-primary btn-small" @onclick="SaveText">Save Note</button>
+</div> 
 <div class="output-group">
-    <button class="btn btn-primary" @onclick="ShowText">Show Text</button>
     <p>@SavedText</p>
+    <button class="btn btn-primary" @onclick="ShowText">Show Notes</button>
+
 </div>
 
 @code {
     private int _caseNumber;
     public string InputText { get; set; } = string.Empty;
     public string SavedText { get; set; } = string.Empty;
-
+    
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        ShowText();
+    }
     void ShowText()
     {
+        if( SavedText.Length > 0 )  SavedText = "";
         if (ValuesService.textValues[_caseNumber].Count == 0) return;
         for (int i = 0; i < ValuesService.textValues[_caseNumber].Count; i++)
         {
             SavedText += " " + ValuesService.textValues[_caseNumber][i];
-            Console.WriteLine(_caseNumber);
-        }
+        }   
+        
+        InputText = SavedText;
     }
     void SaveText()
     {
@@ -102,6 +112,6 @@
         }
 
         // Update the title based on the case number
-        Title = $"Case {_caseNumber + 1}";
+        Title = $"Case {_caseNumber}";
     }
 }
